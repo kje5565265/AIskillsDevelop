@@ -1,0 +1,69 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "PowerShell",
+      "PowerShell(*)",
+      "Bash(*)",
+      "PowerShell(git *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Get-Item *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Rename-Item *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(Select-String *)",
+      "PowerShell(Measure-Object *)",
+      "PowerShell(Compare-Object *)",
+      "PowerShell(foreach *)",
+      "Bash(git *)",
+      "Bash(ls *)",
+      "Bash(diff *)",
+      "WebSearch",
+      "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:cursor.com)",
+      "WebFetch(domain:docs.cursor.com)",
+      "WebFetch(domain:developers.openai.com)",
+      "Skill(code-convention)",
+      "Skill(code-convention:*)",
+      "Skill(document-convention)",
+      "Skill(document-convention:*)",
+      "Skill(git-procedure)",
+      "Skill(git-procedure:*)",
+      "Skill(session-routine)",
+      "Skill(session-routine:*)",
+      "Skill(work-log)",
+      "Skill(work-log:*)",
+      "Skill(skill-pipeline)",
+      "Skill(skill-pipeline:*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -File \"${CLAUDE_PROJECT_DIR}\\.claude\\hooks\\git-procedure-reminder.ps1\""
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -File \"${CLAUDE_PROJECT_DIR}\\.claude\\hooks\\session-routine-reminder.ps1\""
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -File \"${CLAUDE_PROJECT_DIR}\\.claude\\hooks\\work-log-reminder.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}
