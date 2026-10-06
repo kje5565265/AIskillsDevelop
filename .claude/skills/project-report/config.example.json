@@ -1,0 +1,36 @@
+{
+  "$comment": "예시다. 실제 설정은 이 PC 의 ~/.project-report/config.json 에 있고 저장소에 커밋하지 않는다. 만들기: node scripts/collect.mjs init · 등록: add --url <저장소 주소>. 기록 · 복제본 · 보고서를 다른 곳에 두려면 \"baseDir\": \"<경로>\" 를 넣는다 — 없으면 설정과 같은 폴더",
+  "firstReportDays": 7,
+  "newBranchDays": 7,
+  "fetchTimeoutSec": 120,
+  "bodyMaxChars": 400,
+  "docPathPatterns": [
+    "^docs/",
+    "\\.md$"
+  ],
+  "projects": [
+    {
+      "key": "sample",
+      "name": "Project_Sample",
+      "aliases": [
+        "샘플",
+        "sample"
+      ],
+      "repo": "Project_Sample",
+      "url": "https://github.com/your-org/Project_Sample.git",
+      "branches": {
+        "android": {
+          "platform": "안드로이드",
+          "prefix": "and -"
+        },
+        "ios": {
+          "platform": "iOS",
+          "prefix": "ios -"
+        }
+      },
+      "exclude": [
+        "wip/*"
+      ]
+    }
+  ]
+}

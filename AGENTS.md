@@ -26,6 +26,7 @@ AI 개발 인프라 저장소. **AI 에이전트(Claude Code / Codex / Cursor)�
 | 커밋 · 풀 · 푸시를 실행한다 | `git-procedure` |
 | 하루의 **시작 · 마무리 루틴**을 돌린다 (*"아침루틴"* · *"마무리루틴"*) | `session-routine` |
 | **스킬을 만들거나 실 프로젝트에 배포한다** — `.claude/skills/` · `.agents/skills/` · `templates/` 편집 포함 | `skill-pipeline` |
+| 여러 프로젝트의 **현황 보고**를 만든다 · 추적할 프로젝트를 등록한다 (*"프로젝트 현황 보고"* · `/project-report` · *"다시 해줘"*) | `project-report` |
 
 > **이 표에는 실제로 존재하는 스킬만 적는다.** 만들 예정인 스킬을 미리 적으면 에이전트가 없는 파일을 읽으러 간다. 새 스킬은 **완성된 뒤에** 행을 추가한다.
 
@@ -94,7 +95,8 @@ Set-Content <파일> -Encoding UTF8      # 쓰기
 
 - 실 프로젝트(이 저장소 밖의 배포 대상 저장소)에 대한 적용은 **제안하지도, 범위를 되묻지도 않는다.** 기본 범위는 언제나 AI_Develop 안이며 배포 착수는 사용자가 통보한다 (`skill-pipeline` §5.1)
 - **스킬 폴더를 통째로 복사하지 않는다.** 배포할 스킬을 **이름으로 지정해** 복사한다. `git add -A` 를 금지하는 것과 같은 이유다 — **자체 스킬이 딸려 나간다**
-- **AI_Develop 전용 스킬은 실 프로젝트에 배포하지 않는다.** 지금은 `skill-pipeline` 이 해당한다
+- **AI_Develop 전용 스킬은 실 프로젝트에 배포하지 않는다.** 지금은 `skill-pipeline` · `project-report` 가 해당한다
+- **다른 프로젝트의 현황을 보려고 작업 저장소에서 fetch · pull 하지 않는다.** 현황 보고는 `project-report` 가 보고 전용 복제본으로 한다. **그 스킬의 PC 로컬 설정(`~/.project-report/`)은 어느 저장소에도 커밋하지 않는다**
 
 ---
 
@@ -155,7 +157,7 @@ L1 설계 원칙 → L2 언어 → L3 프레임워크 → L3.5 플랫폼 → L4 
 |---|---|---|
 | `.claude/skills/` | **스킬 마스터.** 여기서만 고친다 | 산출물 |
 | `.agents/skills/` | Codex·Cursor 공식 경로. **마스터의 동일 복사본** | 산출물 |
-| └ **자체 스킬** | `skill-pipeline` — **배포되지 않는다.** 배포하는 쪽이 쓰는 도구다 | 이 레포 전용 |
+| └ **자체 스킬** | `skill-pipeline` · `project-report` — **배포되지 않는다.** 배포하는 쪽 · 관리하는 쪽이 쓰는 도구다 | 이 레포 전용 |
 | └ **배포 스킬** | `code-convention` · `document-convention` · `git-procedure` · `session-routine` · `work-log` | 산출물 |
 | `templates/` | **실 프로젝트 배포의 기준.** 배포되는 `AI-SKILLS` 블록의 원본이며, 두 파일은 바이트 동일하다 | 산출물 |
 | `docs/` | 스킬 설계 · 개발 이력 · **작업 기록** · 절차 · 인수인계 — **우리끼리 보는 `.md`** | 문서 |

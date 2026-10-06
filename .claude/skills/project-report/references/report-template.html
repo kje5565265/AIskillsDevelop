@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 현황 보고</title>
+<!--
+  project-report 보고서 양식 — 구성과 규칙은 SKILL.md §2 가 원본이다
+  - {{…}} 를 채우고, 반복 블록(프로젝트 · 핵심 · 그 밖 · 표 행)은 필요한 만큼 복제한다
+  - 순서: 기간 → 한눈에 → 확인해 보실 것 → 프로젝트별(핵심 · 버전별 반영 · 그 밖) → 근거와 확인할 점
+  - 버전별 반영 표는 플랫폼 라인이 둘 이상인 프로젝트만. 없으면 표 블록을 지운다
+  - 표의 플랫폼 칸은 그 프로젝트의 라인 수만큼 둔다 — 이름은 설정의 platform 을 그대로 쓴다
+-->
+<style>
+  :root {
+    --ink: #1f2328; --muted: #656d76; --line: #d0d7de; --bg: #ffffff;
+    --accent: #0b5cad; --warn-bg: #fff8e1; --warn-line: #e0b000; --note-bg: #f3f4f6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px; background: var(--bg); color: var(--ink);
+    font-family: "Malgun Gothic", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; font-size: 14px; line-height: 1.65;
+  }
+  main { max-width: 820px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .period { color: var(--muted); margin: 0 0 2px; }
+  .notice { color: var(--muted); font-size: 13px; margin: 0 0 24px; }
+  h2 { font-size: 17px; margin: 32px 0 10px; padding-bottom: 4px; border-bottom: 2px solid var(--ink); }
+  h2 small { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .summary { list-style: none; padding: 0; margin: 0; }
+  .summary li { display: grid; grid-template-columns: 150px 1fr; padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn-line); padding: 12px 16px 12px 18px; margin: 20px 0 0; }
+  .warn h3 { font-size: 15px; margin: 0 0 6px; }
+  .warn ul { margin: 0; padding-left: 18px; }
+  .warn li { margin: 4px 0; }
+  .label { font-size: 12px; color: var(--muted); margin: 14px 0 4px; }
+  .core { list-style: none; padding: 0; margin: 0; }
+  .core li { position: relative; padding: 4px 0 4px 16px; font-weight: 700; page-break-inside: avoid; }
+  .core li::before { content: ""; position: absolute; left: 2px; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .core .why { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
+  .etc { list-style: none; padding: 0; margin: 0; color: #3d444d; font-size: 13px; }
+  .etc li { display: grid; grid-template-columns: 76px 1fr; padding: 3px 0; page-break-inside: avoid; }
+  .etc b { color: var(--muted); font-weight: 400; }
+  .estimate { font-size: 12px; color: #9a6700; font-weight: 400; }
+  .matrix { width: 100%; border-collapse: collapse; margin: 4px 0; font-size: 13px; }
+  .matrix th, .matrix td { border-bottom: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
+  .matrix th { text-align: left; color: var(--muted); font-weight: normal; font-size: 12px; }
+  .matrix th.pf, .matrix td.pf { width: 76px; text-align: center; white-space: nowrap; }
+  .matrix td.pf { font-size: 15px; color: var(--accent); }
+  .matrix td.pf.none { color: #c0c4c9; }
+  .matrix tr { page-break-inside: avoid; }
+  .note { background: var(--note-bg); padding: 12px 16px; margin-top: 36px; font-size: 12px; color: #3d444d; }
+  .note h2 { font-size: 14px; border: 0; margin: 0 0 6px; padding: 0; }
+  .note ul { margin: 0; padding-left: 18px; }
+  @media (max-width: 560px) { .summary li, .etc li { grid-template-columns: 1fr; } }
+  @media print { body { padding: 0; } @page { size: A4; margin: 16mm 14mm; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>프로젝트 현황 보고</h1>
+  <p class="period">{{기간 — 예: 9월 22일 ~ 9월 29일 17:01}}</p>
+  <p class="notice">아래는 개발 진행 내용이며 출시 여부와는 별개입니다.</p>
+
+  <ul class="summary">
+    <li><b>{{Project_폴더이름}}</b><span>{{한 줄 — 핵심 두세 개를 · 로 잇는다. 변동이 없으면 「변동 없음」}}</span></li>
+  </ul>
+
+  <section class="warn">
+    <h3>⚠ 확인해 보실 것</h3>
+    <ul>
+      <li><b>{{Project_폴더이름}}</b> — {{주의 신호}}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>{{Project_폴더이름}} <small>{{라인이 하나뿐이면 — 안드로이드 등}}</small></h2>
+    <p class="label">핵심</p>
+    <ul class="core">
+      <li>{{무엇이 바뀌었나 — 한 문장}}<span class="why">{{구체 내용 · 의미 — 근거 있을 때만}} <span class="estimate">(추정)</span></span></li>
+    </ul>
+    <p class="label">버전별 반영 — ● 이번 기간에 반영 · — 없음</p>
+    <table class="matrix">
+      <thead><tr><th>변경</th><th class="pf">{{플랫폼 1}}</th><th class="pf">{{플랫폼 2}}</th></tr></thead>
+      <tbody>
+        <tr><td>{{변경}}</td><td class="pf">●</td><td class="pf none">—</td></tr>
+      </tbody>
+    </table>
+    <p class="label">그 밖</p>
+    <ul class="etc">
+      <li><b>{{분류 — 밸런스 · 버그 수정 · 화면 · 수익 · 안정성 · 출시 준비}}</b><span>{{짧은 항목을 · 로 잇는다}}</span></li>
+    </ul>
+  </section>
+
+  <section class="note">
+    <h2>근거와 확인할 점</h2>
+    <ul>
+      <li><b>추정이 들어간 줄</b> — {{항목}} ← {{근거 커밋 제목}}</li>
+      <li><b>대응표에 없는 브랜치</b> — {{…}}</li>
+      <li><b>뺀 것</b> — 기록 · 문서 정리 커밋, 개발 도구 관련</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

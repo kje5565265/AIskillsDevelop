@@ -56,6 +56,7 @@ CLAUDE.md · AGENTS.md  이 저장소에서 작업할 때의 가이드 (바이�
 | 스킬 내용 확인 | [`.claude/skills/`](.claude/skills/) |
 | 스킬 설계 · 결정 근거 | [`docs/skills/`](docs/skills/) |
 | 스킬 개발 · 배포 절차 | [`.claude/skills/skill-pipeline/SKILL.md`](.claude/skills/skill-pipeline/SKILL.md) |
+| 여러 프로젝트의 현황 보고 | [`.claude/skills/project-report/SKILL.md`](.claude/skills/project-report/SKILL.md) — 추적할 프로젝트는 PC 마다 `~/.project-report/` 에 등록한다 (저장소에 커밋하지 않는다) |
 
 ---
 
